@@ -68,7 +68,7 @@ def checkThings(cmdString, target, tolerance):
 if __name__ == '__main__': 
     cmdString = 'python3 /home/pi/thermostasis/thermostasis.py'
     # units in millidegress C
-    target = 25333
+    target = 23333
     tolerance = 1000
 
     checkThings(cmdString, target, tolerance)
