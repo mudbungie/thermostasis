@@ -29,9 +29,9 @@ def checkTemp(target, tolerance):
     CTempString = str(CTemp)[0:2] + '.' + str(CTemp)[2:5] + 'C '
     FTempString = str(FTemp)[0:2] + '.' + str(FTemp)[2:5] + 'F '
     
-    if CTemp < target - tolerance:
+    if CTemp > target - tolerance:
         direction = 'too high'
-    elif CTemp > target + tolerance:
+    elif CTemp < target + tolerance:
         direction = 'too low'
     else:
         inTolerance = True
@@ -68,7 +68,7 @@ def checkThings(cmdString, target, tolerance):
 if __name__ == '__main__': 
     cmdString = 'python3 /home/pi/thermostasis/thermostasis.py'
     # units in millidegress C
-    target = 23333
-    tolerance = 2000
+    target = 25333
+    tolerance = 1000
 
     checkThings(cmdString, target, tolerance)
