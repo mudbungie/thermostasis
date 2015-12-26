@@ -27,12 +27,15 @@ def thermostatic(target, tolerance, heatPin, coolPin, serialNumber):
         setPowerState(heatPin, True)
         setPowerState(coolPin, False)
     # if it is too hot, turn on the cooler
-    elif currentTemp > (target - tolerance):
+    elif currentTemp > (target + tolerance):
         setPowerState(heatPin, False)
         setPowerState(coolPin, True)
+    else:
+        setPowerState(heatPin, False)
+        setPowerState(coolPin, False)
 
 if __name__ == '__main__':
-    myTarget = 21111
+    myTarget = 23333
     myTolerance = 1000
     myHeatPin = 15
     myCoolPin = 23 # I don't presently have a cooler connected
