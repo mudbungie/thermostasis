@@ -1,15 +1,16 @@
-# to send emails if things are wrong
+# To send emails if things are wrong
 
-# my library
 import sendEmail
-
-# not my library
 import psutil
+import os
 
+# SMTP credentials
 def getAuth():
-    with open('auth', 'r') as file:
+    sourceLoc = os.path.dirname(os.path.abspath(__file__)) + '/'
+    with open(sourceLoc + 'auth', 'r') as file:
         return file.read().splitlines()
 
+# Compose everything into the email and send it
 def alertMe(subject, body):
     auth = getAuth()
     username = auth[0]
@@ -29,9 +30,9 @@ def checkTemp(target, tolerance):
     CTempString = str(CTemp)[0:2] + '.' + str(CTemp)[2:5] + 'C '
     FTempString = str(FTemp)[0:2] + '.' + str(FTemp)[2:5] + 'F '
     
-    if CTemp > target - tolerance:
+    if CTemp > target + tolerance:
         direction = 'too high'
-    elif CTemp < target + tolerance:
+    elif CTemp < target - tolerance:
         direction = 'too low'
     else:
         inTolerance = True
