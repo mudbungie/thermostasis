@@ -35,11 +35,18 @@ def thermostatic(target, tolerance, heatPin, coolPin, serialNumber):
         setPowerState(coolPin, False)
 
 if __name__ == '__main__':
-    myTarget = 23333
+    # for brewing 
+    #myTarget = 23333
+    # for boiling
+    myTarget = 23889
     myTolerance = 1000
     myHeatPin = 15
     myCoolPin = 23 # I don't presently have a cooler connected
-    mySerialNumber = '28-0000075d0acc'
+    # Liquid thermometer
+    #mySerialNumber = '28-0000075d0acc'
+    # Air thermocouple
+    mySerialNumber = '28-0000075c9aff'
+
     while True:
         thermostatic(myTarget, myTolerance, myHeatPin, myCoolPin, mySerialNumber)
         time.sleep(1)
