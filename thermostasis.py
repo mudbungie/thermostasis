@@ -38,7 +38,7 @@ if __name__ == '__main__':
     # for brewing 
     #myTarget = 23333
     # for boiling
-    myTarget = 23889
+    myTarget = 27000
     myTolerance = 1000
     myHeatPin = 15
     myCoolPin = 23 # I don't presently have a cooler connected

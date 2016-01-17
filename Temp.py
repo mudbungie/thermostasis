@@ -50,5 +50,5 @@ def getAllTemps():
 
 if __name__ == '__main__':
     for label, temp in getAllTemps().items():
-        print(label + ' is at ' + temp.CString + 'C, and ' + 
-                                        temp.FString + 'F') 
+        print(label + ' is at ' + temp.CString + ', and ' + 
+                                        temp.FString) 
