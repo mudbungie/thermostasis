@@ -23,13 +23,20 @@ def sendEmail(authUser, authPass, recipient, subject, body):
     # Attach into message container.
     msg.attach(message)
     
-    # Send the message via local SMTP server.
-    s = smtplib.SMTP(smtpServer, smtpPort)
-    s.ehlo()
-    s.starttls()
-    s.ehlo()
-    s.login(authUser, authPass)
-    
-    # sendmail function takes 3 arguments: sender's address, recipient's address, message
-    s.sendmail(fromAddress, recipient, msg.as_string())
-    s.quit()
+    try:
+        # Send the message via local SMTP server.
+        s = smtplib.SMTP(smtpServer, smtpPort)
+        s.ehlo()
+        s.starttls()
+        s.ehlo()
+        s.login(authUser, authPass)
+        
+        # sendmail function takes 3 arguments: sender's address, recipient's address, message
+        s.sendmail(fromAddress, recipient, msg.as_string())
+        s.quit()
+        return True
+    except:
+        # I've gotten a lot of errors; easier not to crash anything else, and handle
+        # that logic outside the function, than to dive smtplib code
+        print('SendEmail message send failure')
+        return False

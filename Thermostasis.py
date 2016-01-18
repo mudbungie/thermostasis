@@ -5,15 +5,18 @@ import Pod
 def initializeAllPods():
     pods = {}
     for label, definition in config['pods'].items():
-        pods[label] = Pod(label)
+        pod = Pod.Pod(label)
+        pods[label] = pod
     return pods
 
 def checkAllPods(pods):
-    for pod in pods.items():
+    for label, pod in pods.items():
         pod.checkTolerance()
+        # Diagnostics
+        #print(pod.thermometer.getSoftTemps()['CString'])
 
 if __name__ == '__main__':
     pods = initializeAllPods()
     while True:
         checkAllPods(pods)
-        time.sleep(1)
+        sleep(1)

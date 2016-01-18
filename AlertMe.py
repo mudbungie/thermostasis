@@ -1,9 +1,12 @@
 import SendEmail
+from os import path
 from Thermconfig import config
 
 # SMTP credentials
 def getAuth():
-    with open(config['alerts']['authFile'], 'r') as file:
+    authFileName = (path.dirname(path.abspath(__file__)) + '/' + 
+                                config['alerts']['authFile'])
+    with open(authFileName, 'r') as file:
         return file.read().splitlines()
 
 # Compose everything into the email and send it
@@ -13,12 +16,13 @@ def alertMe(subject, body=''):
     password = auth[1]
     recipient = auth[2]
 
-    sendEmail.sendEmail(username, password, recipient, subject, body)
+    return SendEmail.sendEmail(username, password, recipient, subject, body)
 
 def thermAlert(pod, softTemps):
     if pod.tooHigh:
         direction = ' too high:'
     else:
         direction = ' too low:'
-    subject = pod.label + direction + softTemps['CString'] + softTemps['FString']
-    alertMe(subject)
+    subject = (pod.label + direction + softTemps['CString'] + ' ' +
+                                            softTemps['FString'])
+    return alertMe(subject)
